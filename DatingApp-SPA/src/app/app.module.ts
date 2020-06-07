@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { JwtModule } from '@auth0/angular-jwt';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from 'ngx-gallery-9';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,7 +18,19 @@ import { RouterModule} from '@angular/router';
 import { appRoutes } from './app.routes';
 import { MessagesComponent } from './messages/messages.component';
 import { ListComponent } from './list/list.component';
-import { MembersListComponent } from './members-list/members-list.component';
+import { MembersListComponent } from './members/members-list/members-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
+import { MemberDetailResolver } from './_resolvers/member-details.resolver';
+import { AlertifyService } from './_service/alertify.service';
+import { UserService } from './_service/user.service';
+import { MemberListResolver } from './_resolvers/member-list.resolver';
+
+//For Sending JWT Token to Server
+
+export function tokenGetter(){
+   return localStorage.getItem('token');
+}
 
 @NgModule({
    declarations: [
@@ -27,17 +42,33 @@ import { MembersListComponent } from './members-list/members-list.component';
       MessagesComponent,
       ListComponent,
       MembersListComponent,
+      MemberCardComponent,
+      MemberDetailsComponent
    ],
    imports: [
       BrowserModule,
       BrowserAnimationsModule,
       HttpClientModule,
       FormsModule,
+      NgxGalleryModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      TabsModule.forRoot(),
+      RouterModule.forRoot(appRoutes),
+      JwtModule.forRoot({
+         config: {
+            tokenGetter:tokenGetter,
+            whitelistedDomains:['localhost:5000'],
+            blacklistedRoutes:['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
-      AuthServiceService,ErrorInterceptorProvider
+      AuthServiceService,
+      ErrorInterceptorProvider,
+      MemberDetailResolver,
+      AlertifyService,
+      UserService,
+      MemberListResolver
    ],
    bootstrap: [
       AppComponent
