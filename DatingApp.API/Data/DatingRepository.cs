@@ -37,7 +37,8 @@ namespace DatingApp.API.Data
 
         public  async Task<bool> SaveAll()
         {
-            return await _context.SaveChangesAsync() > 0 ;
+            // I've made this condition >= 0 because if I'm removing something from profile and then adding would be considered as No Change and then it will trhow any on updation
+            return await _context.SaveChangesAsync() >= 0 ;
         }
     }
 }

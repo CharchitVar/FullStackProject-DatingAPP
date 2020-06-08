@@ -25,6 +25,10 @@ import { MemberDetailResolver } from './_resolvers/member-details.resolver';
 import { AlertifyService } from './_service/alertify.service';
 import { UserService } from './_service/user.service';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { AuthGuard } from './_gaurds/auth.guard';
+import { OnDeactivateGuard } from './_gaurds/on-deactivate.guard';
 
 //For Sending JWT Token to Server
 
@@ -43,7 +47,8 @@ export function tokenGetter(){
       ListComponent,
       MembersListComponent,
       MemberCardComponent,
-      MemberDetailsComponent
+      MemberDetailsComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -68,7 +73,10 @@ export function tokenGetter(){
       MemberDetailResolver,
       AlertifyService,
       UserService,
-      MemberListResolver
+      MemberListResolver,
+      MemberEditResolver,
+      AuthGuard,
+      OnDeactivateGuard
    ],
    bootstrap: [
       AppComponent
