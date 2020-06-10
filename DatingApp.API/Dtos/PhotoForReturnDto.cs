@@ -1,8 +1,8 @@
 using System;
 
-namespace DatingApp.API.Models
+namespace DatingApp.API.Dtos
 {
-    public class Photo
+    public class PhotoForReturnDto
     {
         public int Id { get; set; }
 
@@ -12,13 +12,10 @@ namespace DatingApp.API.Models
 
         public bool IsMain { get; set; }
 
-//This public Id will get the value from the cloudinary when the image gets saved there
-        public string PublicID { get; set; }
-
-        public User User { get; set; }
-
         public int UserId { get; set; }
 
         public string Description { get; set; }
+
+        public string PublicId { get; set; }
     }
 }
