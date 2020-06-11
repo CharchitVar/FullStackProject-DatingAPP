@@ -78,6 +78,8 @@ namespace DatingApp.API.Controllers
 
                 }
             }
+
+
             photoForCreation.Url = uploadResult.Uri.ToString();
             photoForCreation.PublicId = uploadResult.PublicId;
 
