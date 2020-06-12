@@ -25,11 +25,11 @@
               <p>{{user.age}}</p>
             </div>
             <strong>Last Active:</strong>
-            <p>{{user.lastActive}}</p>
+            <p>{{user.lastActive | timeago}}</p>
           </div>
           <div>
             <strong>Member Since::</strong>
-            <p>{{user.createdAt}}</p>
+            <p>{{user.createdAt |  date:'mediumDate'}}</p>
           </div>
        
         </div>

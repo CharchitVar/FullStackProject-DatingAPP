@@ -6,6 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import { NgxGalleryModule } from 'ngx-gallery-9';
+import { TimeagoModule } from 'ngx-timeago';
 import { AppComponent } from './app.component';
 import { ValueComponent } from './value/value.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -64,6 +65,7 @@ export function tokenGetter(){
       FileUploadModule,
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
+      TimeagoModule.forRoot(),
       BsDatepickerModule.forRoot(),
       RouterModule.forRoot(appRoutes),
       JwtModule.forRoot({
