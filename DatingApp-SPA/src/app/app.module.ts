@@ -33,6 +33,8 @@ import { AuthGuard } from './_gaurds/auth.guard';
 import { OnDeactivateGuard } from './_gaurds/on-deactivate.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 //For Sending JWT Token to Server
 
@@ -64,6 +66,8 @@ export function tokenGetter(){
       NgxGalleryModule,
       FileUploadModule,
       BsDropdownModule.forRoot(),
+      PaginationModule.forRoot(),
+      ButtonsModule.forRoot(),
       TabsModule.forRoot(),
       TimeagoModule.forRoot(),
       BsDatepickerModule.forRoot(),

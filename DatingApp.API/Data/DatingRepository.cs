@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DatingApp.API.Helpers;
 using DatingApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,10 +39,40 @@ namespace DatingApp.API.Data
             return user;
         }
 
-        public async Task<IEnumerable<User>> GetUsers()
+        public async Task<PagedList<User>> GetUsers(UsersParams usersParams)
         {
-           var users = await _context.Users.Include(p=> p.Photos).ToListAsync();
-           return users;
+           var users =  _context.Users.Include(p=> p.Photos).OrderByDescending(u=>u.LastActive).AsQueryable();
+
+            //For Excluding the current user who has logged in
+           users = users.Where(u => u.Id != usersParams.UserId);
+
+            // For only a particular Gender (Means what we have decided from the controller)
+           users = users.Where(users=>users.Gender == usersParams.Gender);
+
+           if(usersParams.MinAge !=18 || usersParams.MaxAge !=99){
+               // minDOB--- min DOB user is looking for
+               // maxDob -- Max Dob , user is looking for
+
+               var minDob = DateTime.Today.AddYears(-usersParams.MaxAge - 1);
+               var maxDob = DateTime.Today.AddYears(-usersParams.MinAge);
+                 users= users.Where(user => user.DateOfBirth >= minDob && user.DateOfBirth <=  maxDob);
+           }
+
+           if(!string.IsNullOrEmpty(usersParams.OrderBy))
+           {
+               switch(usersParams.OrderBy)
+               {
+                   case "created":
+                   users =users.OrderByDescending(u => u.CreatedAt);
+                   break;
+                   default:
+                   users = users.OrderByDescending(u => u.LastActive);
+                   break;
+               }
+           }
+
+          
+           return await PagedList<User>.CreateAsync(users,usersParams.PageNumber,usersParams.PageSize);
         }
 
         public  async Task<bool> SaveAll()
