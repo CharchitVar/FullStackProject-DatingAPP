@@ -10,6 +10,7 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
 import { OnDeactivateGuard } from './_gaurds/on-deactivate.guard';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 export const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +22,7 @@ export const appRoutes: Routes = [
       { path: 'members', component: MembersListComponent,resolve:{users:MemberListResolver} },
       { path: 'members/:id', component: MemberDetailsComponent,resolve:{user:MemberDetailResolver} },
       { path: 'member/edit', component: MemberEditComponent,resolve:{user:MemberEditResolver}, canDeactivate:[OnDeactivateGuard] },
-      { path: 'list', component: ListComponent },
+      { path: 'list', component: ListComponent, resolve:{users: ListsResolver} },
       { path: 'messages', component: MessagesComponent },
     ],
   },

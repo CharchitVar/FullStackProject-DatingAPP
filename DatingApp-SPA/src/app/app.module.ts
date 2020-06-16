@@ -35,6 +35,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ListsResolver } from './_resolvers/lists.resolver';
 
 //For Sending JWT Token to Server
 
@@ -89,7 +90,7 @@ export function tokenGetter(){
       MemberListResolver,
       MemberEditResolver,
       AuthGuard,
-      OnDeactivateGuard
+      OnDeactivateGuard, ListsResolver
    ],
    bootstrap: [
       AppComponent
