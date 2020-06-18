@@ -15,7 +15,7 @@ export class MemberMessageComponent implements OnInit, AfterContentChecked {
   @Input() recipientId: number;
   messages: Message[];
   newMessage: any ={};
-  constructor(private userService: UserService, private authService: AuthServiceService, private alertify:AlertifyService) { }
+  constructor( private authService: AuthServiceService,private userService: UserService, private alertify:AlertifyService) { }
 
   ngOnInit() {
     this.loadMessage();
