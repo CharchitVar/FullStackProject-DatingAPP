@@ -30,7 +30,6 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
-      console.log(data);
       this.user = data['user'];
     });
     this.authService.currentPhotoUrl.subscribe((photoUrl) => {
@@ -39,8 +38,6 @@ export class MemberEditComponent implements OnInit {
   }
 
   onUpdateUser() {
-    console.log(this.user.interests);
-    console.log(this.user.introduction);
     this.userService
       .updateUser(this.authService.decodedToken.nameid, this.user)
       .subscribe(

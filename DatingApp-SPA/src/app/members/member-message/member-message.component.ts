@@ -54,7 +54,6 @@ export class MemberMessageComponent implements OnInit, DoCheck {
   }
 
   sendMessage() {
-    console.log(this.newMessage.content);
     this.newMessage.recipientId = this.recipientId;
     this.userService
       .sendMessage(this.authService.decodedToken.nameid, this.newMessage)
