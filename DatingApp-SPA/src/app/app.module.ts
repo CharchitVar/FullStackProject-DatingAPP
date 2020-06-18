@@ -36,6 +36,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ListsResolver } from './_resolvers/lists.resolver';
+import { MessagesResolver } from './_resolvers/messages.resolver';
+import { MemberMessageComponent } from './members/member-message/member-message.component';
 
 //For Sending JWT Token to Server
 
@@ -56,7 +58,8 @@ export function tokenGetter(){
       MemberCardComponent,
       MemberDetailsComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      MemberMessageComponent
    ],
    imports: [
       BrowserModule,
@@ -90,7 +93,8 @@ export function tokenGetter(){
       MemberListResolver,
       MemberEditResolver,
       AuthGuard,
-      OnDeactivateGuard, ListsResolver
+      OnDeactivateGuard, ListsResolver,
+      MessagesResolver
    ],
    bootstrap: [
       AppComponent
