@@ -5,7 +5,6 @@ import { UserService } from '../_service/user.service';
 import { AuthServiceService } from '../_service/AuthService.service';
 import { AlertifyService } from '../_service/alertify.service';
 import { ActivatedRoute } from '@angular/router';
-import { error } from 'protractor';
 
 @Component({
   selector: 'app-messages',
