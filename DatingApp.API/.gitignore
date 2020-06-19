@@ -4,3 +4,4 @@ obj
 *.db
 appsettings.json
 debug.log
+wwwroot
