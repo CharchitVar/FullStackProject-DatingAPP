@@ -80,9 +80,10 @@ namespace DatingApp.API
                         }
                     });
                 });
+                app.UseHsts();
             }
-
-            //app.UseHttpsRedirection(); -- Making comments on this file because I'don't need the secure right now.. So No Need for Reedirectiom
+            //app.UseDeveloperExceptionPage();
+            app.UseHttpsRedirection(); //-- Making comments on this file because I'don't need the secure right now.. So No Need for Reedirectiom
 
 
             app.UseRouting();
