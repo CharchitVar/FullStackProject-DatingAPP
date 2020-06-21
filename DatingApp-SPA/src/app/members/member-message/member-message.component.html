@@ -63,7 +63,7 @@
   <div class="card-footer">
     <form #messageForm="ngForm" (ngSubmit)="messageForm.valid && sendMessage()">
       <div class="input-group">
-        <input type="text" [(ngModel)]="newMessage.content" name="content" class="form-control input-sm" placeholder="Send a New Message">
+        <input type="text" [(ngModel)]="newMessage.content" required name="content" class="form-control input-sm" placeholder="Send a New Message">
         <div class="input-group-append">
           <button class="btn btn-primary" [disabled]="!messageForm.valid">
             Send
